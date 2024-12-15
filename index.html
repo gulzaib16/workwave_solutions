@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorkWave Solutions - Empowering Remote Teams</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1 class="logo">WorkWave Solutions</h1>
+
+            <!-- Hamburger Icon -->
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            
+            <nav>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+<section class="hero">
+    <video autoplay muted loop class="hero-video">
+        <source src="media/hero-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+        <h1>Empowering Remote Teams, Anywhere, Anytime</h1>
+        <p>Boost productivity and collaboration with intuitive, secure tools designed for remote work.</p>
+        <div class="cta-buttons">
+            <a href="solutions.html" class="btn btn-primary">Explore Solutions</a>
+            <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+    </div>
+</section>
+
+    <!-- About Us Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-content">
+            <h2>About WorkWave Solutions</h2>
+            <p>
+                WorkWave Solutions offers powerful tools to help businesses manage teams, projects, and workflows remotely.
+                Our platform enhances productivity with seamless collaboration, task automation, and real-time communication.
+                Empower your team to succeed with our scalable, cloud-based solutions designed for remote work.
+            </p>
+        </div>
+        <div class="about-image-container">
+            <img src="images/about-image.jpg" alt="About Us" class="about-image">
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery" id="gallery">
+    <div class="container">
+        <h2>Our Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-wrapper">
+                <div class="gallery-slide">
+                    <img src="images/gallery1.jpg" alt="Gallery Image 1">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery2.png" alt="Gallery Image 2">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery3.png" alt="Gallery Image 3">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery4.png" alt="Gallery Image 4">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery5.jpg" alt="Gallery Image 5">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery6.jpg" alt="Gallery Image 6">
+                </div>
+                <div class="gallery-slide">
+                    <img src="images/gallery7.jpg" alt="Gallery Image 7">
+                </div>
+            </div>
+        </div>
+        <div class="gallery-controls">
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+</section>
+
+    <!-- Solutions Section -->
+    <section class="solutions" id="solutions">
+        <div class="container">
+            <h2>Our Solutions</h2>
+            <div class="solution-cards">
+                <div class="card">
+                    <i class="fas fa-tasks fa-3x"></i>
+                    <h3>Project Management</h3>
+                    <p>Manage and track projects efficiently with real-time collaboration tools.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h3>Team Collaboration</h3>
+                    <p>Collaborate seamlessly across teams, no matter where they are.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-cogs fa-3x"></i>
+                    <h3>Task Automation</h3>
+                    <p>Automate repetitive tasks to enhance team productivity and efficiency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="key-features">
+    <div class="container">
+        <h2>Our Key Features</h2>
+
+        <!-- Feature 1 (Image on the Left, Text on the Right) -->
+        <div class="feature">
+            <div class="feature-img">
+                <img src="images/feature1.jpg" alt="Feature 1 Image">
+            </div>
+            <div class="feature-text">
+                <h3>Team Collaboration</h3>
+                <p>Collaborate in real-time with your team members. Share documents, track progress, and communicate effectively to reach your goals faster.</p>
+            </div>
+        </div>
+
+        <!-- Feature 2 (Image on the Right, Text on the Left) -->
+        <div class="feature reverse">
+            <div class="feature-img">
+                <img src="images/feature2.jpg" alt="Feature 2 Image">
+            </div>
+            <div class="feature-text">
+                <h3>Task Management</h3>
+                <p>Track tasks from start to finish with ease. Assign tasks, set deadlines, and monitor progress through intuitive dashboards.</p>
+            </div>
+        </div>
+
+        <!-- Feature 3 (Image on the Left, Text on the Right) -->
+        <div class="feature">
+            <div class="feature-img">
+                <img src="images/feature3.jpg" alt="Feature 3 Image">
+            </div>
+            <div class="feature-text">
+                <h3>Analytics and Reporting</h3>
+                <p>Leverage powerful data analytics tools to track performance, measure success, and identify areas for improvement with detailed reports.</p>
+            </div>
+        </div>
+
+        <!-- Feature 4 (Image on the Right, Text on the Left) -->
+        <div class="feature reverse">
+            <div class="feature-img">
+                <img src="images/solution3.jpg" alt="Feature 4 Image">
+            </div>
+            <div class="feature-text">
+                <h3>Cloud Storage Integration</h3>
+                <p>Access your files anytime, anywhere. Our platform integrates with popular cloud services like Google Drive and Dropbox for seamless storage and sharing.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>What Our Clients Say</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial">
+                    <p>"WorkWave Solutions revolutionized our team collaboration and boosted productivity tenfold!"</p>
+                    <h4>- Jane Doe, CEO</h4>
+                </div>
+                <div class="testimonial">
+                    <p>"The platform is intuitive and easy to use. Their support team is also top-notch!"</p>
+                    <h4>- John Smith, Operations Manager</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-form" id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="/submit_form" method="post">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
+
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Contact Details -->
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <p>📍 Address: 123 Remote Work Blvd, Suite 456, Tech City</p>
+                <p>📞 Phone: +1 234 567 8901</p>
+                <p>✉️ Email: info@workwavesolutions.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Copyright Line -->
+<div class="footer-copyright">
+    <p>&copy; 2024 WorkWave Solutions. All rights reserved.</p>
+</div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>

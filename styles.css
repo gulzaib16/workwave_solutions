@@ -1,0 +1,759 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 80px; /* Adjust for fixed header */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Header Section */
+header {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* 🟢 Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.hamburger i {
+    color: #fff;
+}
+
+/* 🟢 Mobile Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #4CAF50;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        padding: 1rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background: url('images/hero-background.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cta-buttons .btn {
+    font-size: 18px;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-buttons .btn:hover {
+    background-color: #388e3c;
+}
+
+/* About Section */
+.about {
+    padding: 50px 0;
+    background-color: #fff;
+}
+
+.about .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-content {
+    width: 50%;
+    padding-right: 30px;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+.about-image-container {
+    width: 45%;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Gallery Section */
+.gallery {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+    position: relative;
+}
+
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide the overflow */
+}
+
+.gallery-wrapper {
+    display: flex;
+    width: 100%; /* Make sure the gallery takes up the full width of its container */
+}
+
+.gallery-slide {
+    flex: 0 0 auto; /* Prevent shrinking of the images */
+    padding: 0 10px; /* Optional: add some space between images */
+}
+
+.gallery-slide img {
+    width: 100%;  /* Make images fill the container */
+    height: auto;
+    max-width: 500px;  /* Set a max width to maintain large images */
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Optional: add shadow to images */
+}
+
+/* Gallery Navigation Controls */
+.gallery-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.gallery-controls button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.gallery-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Hide the arrows */
+.prev, .next {
+    display: none;
+}
+
+.gallery-controls button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+/* Solutions Section */
+.solutions {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+.solution-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #fff;
+    padding: 20px;
+    width: 30%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card i {
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 1rem;
+}
+
+/* Key Features Section */
+.key-features {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.key-features h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Individual Feature */
+.feature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.feature.reverse {
+    flex-direction: row-reverse; /* Image on the right, text on the left */
+}
+
+.feature-img {
+    flex: 1;
+    padding: 20px;
+}
+
+.feature-img img {
+    width: 70%;  /* Set image width to 70% of the container */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 400px; /* Set a maximum width to ensure the image doesn't get too large */
+    border-radius: 8px;
+}
+
+.feature-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.feature-text h3 {
+    font-size: 1.75rem;
+    color: #009c4a;
+    margin-bottom: 20px;
+}
+
+.feature-text p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .feature-img {
+        margin-bottom: 20px;
+    }
+
+    .feature-text {
+        text-align: center;
+    }
+}
+
+
+
+/* Solutions Section */
+.solutions {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.solutions h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Solution Cards */
+.solution-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.solution-card .solution-img {
+    width: 45%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.solution-card .solution-text {
+    width: 50%;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.solution-card h3 {
+    font-size: 1.75rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.solution-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .solution-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .solution-card .solution-img {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .solution-card .solution-text {
+        width: 100%;
+        padding-left: 0;
+    }
+}
+
+/* Features Section */
+.features {
+    background-color: #f9f9f9; /* Light background for features */
+    padding: 60px 0;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+/* Feature Cards */
+.feature-card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    display: inline-block;
+    width: calc(33.33% - 40px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.75rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .feature-card {
+        width: calc(50% - 40px); /* Two cards per row */
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-card {
+        width: 100%; /* One card per row */
+    }
+}
+
+/* CTA Section */
+.cta {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 1.25rem;
+    margin-bottom: 30px;
+}
+
+.cta .btn {
+    background-color: #fff;
+    color: #4CAF50;
+    font-size: 1.25rem;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cta .btn:hover {
+    background-color: #007f36;
+    color: white;
+}
+
+/* Feature and Solution Cards */
+.solution-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+
+/* Testimonials Section */
+.testimonials {
+    background-color: #f4f4f9;  /* Light background color */
+    padding: 50px 0;             /* Top and bottom padding */
+    text-align: center;          /* Center text */
+}
+
+.testimonials h2 {
+    font-size: 2.5rem;           /* Size of the title */
+    color: #4CAF50;              /* Green color */
+    margin-bottom: 30px;         /* Bottom margin to separate from cards */
+}
+
+.testimonial-cards {
+    display: grid;               /* Use grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));  /* Responsive grid layout */
+    gap: 20px;                   /* Space between the cards */
+    justify-content: center;     /* Center the grid */
+    align-items: stretch;        /* Stretch items to fit the grid */
+    margin-top: 20px;
+}
+
+.testimonial-card {
+    background-color: #fff;      /* White background for each card */
+    border-radius: 10px;         /* Rounded corners */
+    padding: 30px 20px;          /* Padding inside the card */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);  /* Soft shadow for 3D effect */
+    text-align: center;          /* Center text inside the card */
+    position: relative;          /* Position for the quote icon */
+    transition: all 0.3s ease;   /* Smooth transition for hover effect */
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px); 
+}
+
+.testimonial-card i.quote-icon {
+    font-size: 30px;             
+    color: #4CAF50;              
+    position: absolute;         
+    top: 20px;                 
+    left: 20px;               
+}
+
+.testimonial-card p {
+    font-size: 1rem;             
+    font-style: italic;          
+    color: #555;               
+    line-height: 1.6;            
+    margin: 20px 0;              
+}
+
+.testimonial-card h4 {
+    font-size: 1.2rem;           
+    color: #333;                 
+    font-weight: bold;           
+    margin-bottom: 5px;          
+}
+
+.testimonial-card .position {
+    font-size: 0.9rem;           
+    color: #777;                 
+    font-style: normal;          
+}
+
+/* Add styling for the dummy photo */
+.testimonial-card .testimonial-img {
+    width: 80px;                
+    height: 80px;              
+    border-radius: 50%;         
+    margin-top: 15px;          
+    object-fit: cover;          
+    border: 3px solid #4CAF50; 
+}
+
+.testimonial-img {
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+/* Contact Form Section */
+.contact-form {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+}
+
+.contact-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-form label {
+    font-weight: bold;
+}
+
+.contact-form input, 
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.contact-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form button:hover {
+    background-color: #388e3c;
+}
+
+/* Footer Section Styles */
+.footer {
+    background-color: #4CAF50; /* Use the exact same color as the header */
+    color: #ffffff; /* White text */
+    padding: 50px 0; /* Space around the content */
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+}
+
+.footer-contact {
+    text-align: center; 
+}
+
+.footer-contact h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffffff; /* White text for title */
+}
+
+.footer-contact p {
+    font-size: 16px;
+    color: #ffffff; /* White text for contact details */
+    margin-bottom: 10px;
+}
+
+.footer-contact p:last-child {
+    margin-bottom: 0;
+}
+
+/* Copyright Line */
+.footer-copyright {
+    background-color: #000000; /* Black background for copyright */
+    text-align: center;
+    padding: 10px 0;
+    width: 100%; /* Full width */
+}
+
+.footer-copyright p {
+    font-size: 14px;
+    color: #ffffff; /* White text for the copyright */
+    margin: 0;
+}
+
+/* Remove extra space below footer */
+body {
+    margin: 0; /* Removes any margin at the bottom */
+}
+
+html {
+    height: 100%; /* Ensures full height for body */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures content covers the full height of the viewport */
+}
+
+.footer-copyright {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer {
+    flex-grow: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer .container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-contact {
+        width: 100%;
+    }
+}
