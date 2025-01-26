@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logout Button */
+        #logout-button {
+            background: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        #logout-button:hover {
+            background: #ddd;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 600px;
+            background: white;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-picture {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #4CAF50;
+            margin-bottom: 15px;
+        }
+
+        .username {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .email {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        /* Profile Links */
+        .profile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .profile-links a {
+            display: block;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .profile-links a:hover {
+            background: #367c39;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <span>Welcome, <span id="username-display"></span></span>
+        <button id="logout-button">Logout</button>
+    </header>
+
+    <div class="profile-container">
+        <img src="images/default-profile.png" alt="Profile Picture" class="profile-picture">
+        <div class="username" id="username-display-large"></div>
+        <div class="email" id="user-email">user@example.com</div>
+
+        <div class="profile-links">
+            <a href="change-password.html">Change Password</a>
+            <a href="edit-profile.html">Edit Profile</a>
+            <a href="dashboard.html">Go to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        let username = sessionStorage.getItem("username");
+        let userEmail = "your-email@example.com"; // Replace this with dynamic fetching in future
+
+        if (!username) {
+            window.location.href = "member-login.html";
+        } else {
+            document.getElementById("username-display").textContent = username;
+            document.getElementById("username-display-large").textContent = username;
+            document.getElementById("user-email").textContent = userEmail;
+        }
+
+        document.getElementById("logout-button").addEventListener("click", function () {
+            sessionStorage.removeItem("username");
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+{"message":"Hi","receiver_id":"2"}
+{"message":"Hi","receiver_id":"2"}
+{"message":"Hi","receiver_id":"2"}
+{"message":"Hi","receiver_id":"2"}
+{"message":"Hi","receiver_id":"2"}
+{"message":"Hi","receiver_id":"2"}

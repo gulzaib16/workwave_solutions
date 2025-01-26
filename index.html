@@ -11,24 +11,28 @@
 
     <!-- Header Section -->
     <header>
-        <div class="container">
+        <div class="container header-container">
             <h1 class="logo">WorkWave Solutions</h1>
-
-            <!-- Hamburger Icon -->
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-            
             <nav>
-                <ul class="nav-links" id="nav-links">
+                <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="solutions.html">Solutions</a></li>
                     <li><a href="features.html">Features</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown login-dropdown">
+                        <span class="dropdown-toggle" id="login-toggle">
+                            <i class="fas fa-user"></i> Login ▼
+                        </span>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+                            <li id="login-link"><a href="member-login.html"><i class="fas fa-user"></i> Member Login</a></li>
+                            <li id="admin-link"><a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                            <li id="logout-item" style="display: none;"><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </nav>
-
         </div>
     </header>
     
@@ -235,6 +239,8 @@
 </div>
 
 
-    <script src="script.js"></script>
+<script src="script.js?v=<?php echo time(); ?>" defer></script>
+
+
 </body>
 </html>

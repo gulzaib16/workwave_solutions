@@ -5,98 +5,311 @@
     box-sizing: border-box;
 }
 
+/* General Styling */
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    padding-top: 80px; /* Adjust for fixed header */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
-
-/* Header Section */
+/* Header Styling */
 header {
     background-color: #4CAF50;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: white;
+    padding: 15px 0;
+    text-align: center;
 }
 
-header .container {
+.header-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.logo {
-    font-size: 1.8rem;
+header .logo {
+    font-size: 24px;
     font-weight: bold;
+    margin-right: auto;
 }
 
 .nav-links {
-    display: flex;
     list-style: none;
-}
-
-.nav-links li {
-    margin-left: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    color: #fff;
+    color: white;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px 15px;
 }
 
 .nav-links a:hover {
-    text-decoration: underline;
+    background-color: #45a049;
+    border-radius: 5px;
 }
 
-/* 🟢 Hamburger Menu Styles */
+/* Login Icon Styling */
+.login-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add space between icon and text */
+    font-size: 16px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    background-color: #45a049;
+}
+
+.dropdown-toggle i {
+    font-size: 20px; /* Adjust icon size */
+    color: white; /* Ensure icon color is white */
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #4CAF50; /* Green background */
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin-top: 10px;
+    right: 0;
+    text-align: left;
+    border-radius: 5px;
+}
+
+/* Hide dropdown by default */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    list-style: none;
+    width: 180px;
+    z-index: 1000;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Show dropdown when .show class is added */
+.dropdown-menu.show {
+    display: block;
+}
+
+/* Style for login dropdown */
+.login-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+/* Dropdown menu items */
+.dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ensure text inside dropdown is visible */
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Hamburger Menu */
 .hamburger {
     display: none;
     cursor: pointer;
-    font-size: 2rem;
 }
 
 .hamburger i {
-    color: #fff;
+    font-size: 24px;
 }
 
-/* 🟢 Mobile Styles */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
-        width: 100%;
         background-color: #4CAF50;
+        width: 100%;
         position: absolute;
-        top: 80px;
+        top: 60px;
         left: 0;
-        padding: 1rem;
-    }
-
-    .hamburger {
-        display: block;
     }
 
     .nav-links.active {
         display: flex;
     }
 
-    .nav-links li {
-        margin: 1rem 0;
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links a {
+        padding: 10px;
         text-align: center;
     }
 }
+
+/* Show dropdown menu on click */
+.login-dropdown.active .dropdown-menu {
+    display: block;
+}
+
+/* Admin Login Page Specific Styles */
+.admin-login-page {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("images/admin.jpg") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.admin-login-page .login-main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin-login-page .login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #333;
+}
+
+.admin-login-page .login-header {
+    margin-bottom: 20px;
+}
+
+.admin-login-page .login-header i {
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.admin-login-page .login-header h2 {
+    font-size: 1.8rem;
+    color: #4CAF50;
+}
+
+.admin-login-page .login-header p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.admin-login-page .login-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.admin-login-page .login-form label {
+    display: block;
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.admin-login-page .login-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.admin-login-page .login-form input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.4);
+}
+
+.admin-login-page .btn-login {
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.admin-login-page .btn-login:hover {
+    background-color: #388E3C;
+}
+
+.admin-login-page .go-back-home {
+    margin-top: 15px;
+}
+
+.admin-login-page .btn-home {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: #4CAF50;
+    background-color: #e6e6e6;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-login-page .btn-home i {
+    margin-right: 5px;
+}
+
+.admin-login-page .btn-home:hover {
+    background-color: #4CAF50;
+    color: #fff;
+    border-color: #4CAF50;
+}
+
+.admin-login-page .footer-text {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* Ensure global styles are not affected */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
 
 /* Hero Section */
 .hero {
@@ -134,8 +347,8 @@ header .container {
 
 .cta-buttons {
     display: flex;
-    gap: 20px;
     justify-content: center;
+    gap: 20px;
     margin-top: 20px;
 }
 
@@ -147,10 +360,29 @@ header .container {
     background-color: #4CAF50;
     color: white;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    text-align: center;
+    white-space: nowrap;
+    width: 200px; /* Set width to auto for both buttons */
+    min-width: 200px; /* Ensure both buttons are at least the same width */
+    
+    line-height: 1.2;
 }
 
 .cta-buttons .btn:hover {
     background-color: #388e3c;
+}
+
+.cta-buttons .btn-secondary {
+    background-color: #f1f1f1;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.cta-buttons .btn-secondary:hover {
+    background-color: #4CAF50;
+    color: white;
+    border-color: #388e3c;
 }
 
 /* About Section */
@@ -661,6 +893,199 @@ header .container {
     background-color: #388e3c;
 }
 
+/* Login Section */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    background: url("images/memberlogin.jpg") no-repeat center center; /* Background Image */
+    background-size: cover; /* Ensure the image fits the section */
+}
+
+/* Add a semi-transparent overlay */
+.form-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Black overlay with 60% transparency */
+    z-index: 1;
+}
+
+/* Main Section */
+.form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    position: relative;
+    background: url("images/registerform.jpg") no-repeat center center; /* Background Image */
+    background-size: cover;
+}
+
+.form-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Dark transparent overlay */
+    z-index: 1;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #003366;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: #003366;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #002244;
+}
+
+.login-link {
+    margin-top: 15px;
+}
+
+.login-link a {
+    color: #003366;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    z-index: 2; /* Ensure it sits above the overlay */
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #003366;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+input:focus {
+    border-color: #003366;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: #003366;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-primary:hover {
+    background-color: #002244;
+}
+
+.register-link {
+    margin-top: 15px;
+}
+
+.register-link a {
+    color: #003366;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
 /* Footer Section Styles */
 .footer {
     background-color: #4CAF50; /* Use the exact same color as the header */
@@ -741,6 +1166,14 @@ body {
 .footer {
     flex-grow: 1;
 }
+\footer {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -756,4 +1189,47 @@ body {
     .footer-contact {
         width: 100%;
     }
+}
+
+/* Form Section */
+.form-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.form-section h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button.btn {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: #218838;
 }

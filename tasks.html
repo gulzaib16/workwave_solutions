@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks - WorkWave Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .tasks-container {
+            max-width: 750px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .tasks-container h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .task:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .task button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+        }
+
+        .task button:hover {
+            background: #367c39;
+            transform: scale(1.05);
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            background: #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 25px;
+            height: 14px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .back-button:hover {
+            color: #367c39;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">Tasks</div>
+
+    <div class="tasks-container">
+        <h2>My Tasks</h2>
+
+        <div class="task">
+            <span>Complete Project Report</span>
+            <button onclick="markTaskComplete(this)">Mark as Done</button>
+        </div>
+
+        <div class="task">
+            <span>Team Meeting at 3 PM</span>
+            <button onclick="markTaskComplete(this)">Mark as Done</button>
+        </div>
+
+        <div class="task">
+            <span>Review Client Feedback</span>
+            <button onclick="markTaskComplete(this)">Mark as Done</button>
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <a href="dashboard.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <script>
+        let totalTasks = document.querySelectorAll(".task").length;
+        let completedTasks = 0;
+
+        function markTaskComplete(button) {
+            button.textContent = "Done";
+            button.style.background = "#ddd";
+            button.style.color = "#000";
+            button.style.pointerEvents = "none";
+            completedTasks++;
+
+            let progress = (completedTasks / totalTasks) * 100;
+            document.getElementById("progress-bar").style.width = progress + "%";
+        }
+    </script>
+
+</body>
+</html>

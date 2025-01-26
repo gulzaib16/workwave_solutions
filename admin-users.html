@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Users</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #e0f2f1; margin: 0; padding: 0;">
+
+    <!-- Navigation Bar -->
+    <nav style="background-color: #28a745; padding: 15px;">
+        <div style="max-width: 1200px; margin: auto; display: flex; align-items: center;">
+            <!-- Back Arrow -->
+            <button onclick="window.history.back()" style="background: none; border: none; cursor: pointer; padding: 0; margin-right: 20px;">
+                <!-- SVG Arrow Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffffff" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <h2 style="color: #ffffff; margin: 0;">Manage Users</h2>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div style="max-width: 1200px; margin: 30px auto; padding: 20px; background-color: #ffffff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+
+        <!-- Alert Messages -->
+        <div id="alertContainer" style="margin-bottom: 20px;"></div>
+
+        <!-- Users Table -->
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background-color: #28a745; color: #ffffff;">
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">ID</th>
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Username</th>
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Email</th>
+                        <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Users will be populated here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userTableBody = document.querySelector('table tbody');
+            const alertContainer = document.getElementById('alertContainer');
+            let userIdToDelete = null;
+
+            // Fetch and display users
+            fetchUsers();
+
+            function fetchUsers() {
+                fetch('fetch-users.php', {
+                    credentials: 'same-origin' // Include cookies if needed
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        showAlert('error', data.error);
+                        return;
+                    }
+                    populateUserTable(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching users:', error);
+                    showAlert('error', 'An error occurred while fetching users.');
+                });
+            }
+
+            function populateUserTable(users) {
+                userTableBody.innerHTML = ''; // Clear existing data
+                if (users.length === 0) {
+                    userTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 20px; color: #777;">No users found.</td>
+                        </tr>
+                    `;
+                    return;
+                }
+                users.forEach(user => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td style="padding: 12px; border: 1px solid #ddd;">${user.id}</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">${sanitizeHTML(user.username)}</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">${sanitizeHTML(user.email)}</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            <button onclick="confirmDelete(${user.id}, '${sanitizeHTML(user.username)}')" style="background-color: #d32f2f; color: #fff; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">Delete</button>
+                        </td>
+                    `;
+                    userTableBody.appendChild(row);
+                });
+            }
+
+            // Function to confirm deletion
+            window.confirmDelete = function(userId, username) {
+                if (confirm(`Are you sure you want to delete the user "${username}"?`)) {
+                    deleteUser(userId);
+                }
+            }
+
+            // Function to delete user
+            function deleteUser(userId) {
+                fetch('delete-user.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: userId }),
+                    credentials: 'same-origin' // Include cookies if needed
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showAlert('success', data.success);
+                        fetchUsers(); // Refresh the user list
+                    } else if (data.error) {
+                        showAlert('error', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting user:', error);
+                    showAlert('error', 'An error occurred while deleting the user.');
+                });
+            }
+
+            // Function to display alerts
+            function showAlert(type, message) {
+                const alertDiv = document.createElement('div');
+                alertDiv.style.padding = '15px 20px';
+                alertDiv.style.marginBottom = '20px';
+                alertDiv.style.borderRadius = '4px';
+                alertDiv.style.color = '#ffffff';
+                alertDiv.style.opacity = '0.9';
+                alertDiv.style.transition = 'opacity 0.6s';
+                alertDiv.textContent = message;
+
+                if (type === 'success') {
+                    alertDiv.style.backgroundColor = '#28a745'; // Green
+                } else if (type === 'error') {
+                    alertDiv.style.backgroundColor = '#dc3545'; // Red
+                }
+
+                alertContainer.appendChild(alertDiv);
+
+                // Automatically remove the alert after 5 seconds
+                setTimeout(() => {
+                    alertDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        alertDiv.remove();
+                    }, 600);
+                }, 5000);
+            }
+
+            // Function to sanitize HTML to prevent XSS
+            function sanitizeHTML(str) {
+                const temp = document.createElement('div');
+                temp.textContent = str;
+                return temp.innerHTML;
+            }
+        });
+    </script>
+
+</body>
+</html>

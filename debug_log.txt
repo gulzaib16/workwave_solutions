@@ -1,0 +1,3 @@
+Request Method: GET
+Request Method: POST
+Received Data: {"message":"Hi","receiver_id":"2"}

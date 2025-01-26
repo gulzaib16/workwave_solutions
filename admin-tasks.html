@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Task Management</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Admin Container */
+        .admin-container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .admin-header {
+            background: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* Task Form */
+        .task-form-section {
+            background: #f1f1f1;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .task-form {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .task-form input, .task-form select {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .task-form .btn {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .task-form .btn:hover {
+            background: #218838;
+        }
+
+        /* Task Table */
+        .task-table-section {
+            margin-top: 20px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-table th {
+            background: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+
+        .admin-table td {
+            background: #ffffff;
+            font-size: 14px;
+        }
+
+        /* Status Colors */
+        .status-pending {
+            color: red;
+            font-weight: bold;
+        }
+
+        .status-in-progress {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .status-completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .edit-btn {
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            background: #0056b3;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b30000;
+        }
+        .back-arrow {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background: #388e3c;
+    padding: 8px 12px;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transition: background 0.3s ease-in-out;
+}
+
+.back-arrow:hover {
+    background: #2e7d32;
+}
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <header class="admin-header">
+            <a href="admin-dashboard.html" class="back-arrow">
+                &#8592;
+            </a>
+            
+            <h2>📋 Manage Tasks</h2>
+        </header>
+
+        <section class="task-form-section">
+            <h3>Add New Task</h3>
+            <form id="addTaskForm" class="task-form">
+                <input type="text" id="task_name" placeholder="Enter Task Name" required>
+                <select id="assign_user">
+                    <option value="">Assign to User</option>
+                </select>
+                <button type="submit" class="btn">+ Add Task</button>
+            </form>
+        </section>
+
+        <section class="task-table-section">
+            <h3>All Tasks</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Task</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="task-list">
+                    <tr><td colspan="5" class="loading">Loading tasks...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchUsers();
+            fetchTasks();
+        });
+    
+        function fetchUsers() {
+            fetch('fetch-users.php')
+                .then(response => response.json())
+                .then(data => {
+                    let userDropdown = document.getElementById('assign_user');
+                    userDropdown.innerHTML = `<option value="">Assign to User</option>`;
+                    data.forEach(user => {
+                        userDropdown.innerHTML += `<option value="${user.id}">${user.username}</option>`;
+                    });
+                });
+        }
+    
+        function fetchTasks() {
+            fetch('fetch-tasks.php')
+                .then(response => response.json())
+                .then(data => {
+                    let taskList = document.getElementById('task-list');
+                    taskList.innerHTML = '';
+    
+                    if (data.length === 0) {
+                        taskList.innerHTML = '<tr><td colspan="5" style="text-align: center;">No tasks available.</td></tr>';
+                        return;
+                    }
+    
+                    data.forEach(task => {
+                        let statusClass = task.status === "completed" ? "status-completed" :
+                                          task.status === "in-progress" ? "status-in-progress" : "status-pending";
+    
+                        taskList.innerHTML += `
+                            <tr>
+                                <td>${task.id}</td>
+                                <td>${task.assigned_user}</td>
+                                <td>${task.task_name}</td>
+                                <td class="${statusClass}">${task.status}</td>
+                                <td>
+                                    <button class="edit-btn" onclick="editTask(${task.id}, '${task.task_name}')">Edit</button>
+                                    <button class="delete-btn" onclick="deleteTask(${task.id})">Delete</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                });
+        }
+    
+        document.getElementById('addTaskForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let taskName = document.getElementById('task_name').value;
+            let userId = document.getElementById('assign_user').value;
+    
+            if (!taskName || !userId) {
+                alert("Task name and user selection are required.");
+                return;
+            }
+    
+            fetch('save_task.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `task_name=${encodeURIComponent(taskName)}&user_id=${encodeURIComponent(userId)}`
+            }).then(() => {
+                fetchTasks();
+                this.reset();
+            });
+        });
+    
+        function editTask(taskId, taskName) {
+            let newTaskName = prompt("Edit Task Name:", taskName);
+            if (!newTaskName) return;
+    
+            fetch('update-task.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `task_id=${taskId}&task_name=${encodeURIComponent(newTaskName)}`
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Task updated successfully!");
+                    fetchTasks();
+                } else {
+                    alert("Error: " + data.error);
+                }
+            });
+        }
+    
+        function deleteTask(taskId) {
+            if (!confirm("Are you sure you want to delete this task?")) return;
+    
+            fetch('delete-task.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `task_id=${taskId}`
+            }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Task deleted successfully!");
+                    fetchTasks();
+                } else {
+                    alert("Error: " + data.error);
+                }
+            });
+        }
+    </script>
+    
+
+</body>
+</html>

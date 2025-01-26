@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - WorkWave Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .profile-container {
+            max-width: 550px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .profile-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .form-group input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .form-group i {
+            position: absolute;
+            left: 12px;
+            top: 38px;
+            color: #888;
+        }
+
+        .form-button {
+            width: 100%;
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .form-button:hover {
+            background: #367c39;
+        }
+
+        .separator {
+            margin: 25px 0;
+            border-top: 2px solid #ddd;
+        }
+
+        .message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">Profile Settings</div>
+
+    <div class="profile-container">
+        <!-- Update Profile -->
+        <div class="profile-title">Update Profile</div>
+        
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <i class="fas fa-user"></i>
+            <input type="text" id="username" value="sana13" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" placeholder="Enter new email">
+        </div>
+
+        <button class="form-button" onclick="updateProfile()">Update Profile</button>
+
+        <div id="profile-message" class="message"></div>
+
+        <div class="separator"></div>
+
+        <!-- Change Password -->
+        <div class="profile-title">Change Password</div>
+
+        <div class="form-group">
+            <label for="old-password">Old Password:</label>
+            <i class="fas fa-lock"></i>
+            <input type="password" id="old-password" placeholder="Enter old password">
+        </div>
+
+        <div class="form-group">
+            <label for="new-password">New Password:</label>
+            <i class="fas fa-key"></i>
+            <input type="password" id="new-password" placeholder="Enter new password">
+        </div>
+
+        <button class="form-button" onclick="changePassword()">Change Password</button>
+
+        <div id="password-message" class="message"></div>
+
+        <a href="dashboard.html" class="back-button"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+    </div>
+
+    <script>
+        function updateProfile() {
+            let email = document.getElementById("email").value;
+            let messageBox = document.getElementById("profile-message");
+
+            if (email.trim() === "") {
+                messageBox.className = "message error";
+                messageBox.innerText = "Email cannot be empty.";
+            } else {
+                messageBox.className = "message success";
+                messageBox.innerText = "Profile updated successfully!";
+            }
+            messageBox.style.display = "block";
+            setTimeout(() => messageBox.style.display = "none", 3000);
+        }
+
+        function changePassword() {
+            let oldPass = document.getElementById("old-password").value;
+            let newPass = document.getElementById("new-password").value;
+            let messageBox = document.getElementById("password-message");
+
+            if (oldPass.trim() === "" || newPass.trim() === "") {
+                messageBox.className = "message error";
+                messageBox.innerText = "Both fields are required.";
+            } else if (newPass.length < 8) {
+                messageBox.className = "message error";
+                messageBox.innerText = "Password must be at least 8 characters.";
+            } else {
+                messageBox.className = "message success";
+                messageBox.innerText = "Password changed successfully!";
+            }
+            messageBox.style.display = "block";
+            setTimeout(() => messageBox.style.display = "none", 3000);
+        }
+    </script>
+
+</body>
+</html>

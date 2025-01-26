@@ -8,28 +8,31 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- Header Section -->
     <header>
-        <div class="container">
+        <div class="container header-container">
             <h1 class="logo">WorkWave Solutions</h1>
-
-            <!-- Hamburger Icon -->
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-
             <nav>
-                <ul class="nav-links" id="nav-links">
+                <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="solutions.html" class="active">Solutions</a></li>
                     <li><a href="features.html">Features</a></li>
                     <li><a href="testimonials.html">Testimonials</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown login-dropdown">
+                        <span class="dropdown-toggle" id="login-toggle">
+                            <i class="fas fa-user"></i> Login
+                        </span>
+                        <ul class="dropdown-menu" id="dropdown-menu">
+                            <li><a href="member-login.html"><i class="fas fa-user"></i> Member Login</a></li>
+                            <li><a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin Login</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
-
     <!-- Solutions List Section -->
     <section class="solutions">
         <div class="container">

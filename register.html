@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - WorkWave Solutions</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <h1 class="logo">WorkWave Solutions</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="solutions.html">Solutions</a></li>
+                    <li><a href="features.html">Features</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Registration Section -->
+    <section class="form-section">
+        <div class="container form-container">
+            <h2>Register</h2>
+
+            <!-- Form action should point to register.php -->
+            <form action="register.php" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    <p id="username-error" class="error-message" style="color:red;"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <p id="email-error" class="error-message" style="color:red;"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                    <p id="password-error" class="error-message" style="color:red;"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+
+            <div class="login-link">
+                <p>Already have an account? <a href="member-login.html">Login here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 WorkWave Solutions. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to get URL parameters
+function getQueryParam(param) {
+    let params = new URLSearchParams(window.location.search);
+    return params.get(param);
+}
+
+// Function to display error messages from URL parameters
+function showErrors() {
+    // Set form values if available in URL parameters
+    document.getElementById('username').value = getQueryParam('username') || '';
+    document.getElementById('email').value = getQueryParam('email') || '';
+
+    // Error messages handling
+    if (getQueryParam('error') === 'username_exists') {
+        document.getElementById('username-error').textContent = "Username already exists!";
+    }
+    if (getQueryParam('error') === 'email_exists') {
+        document.getElementById('email-error').textContent = "Email already exists!";
+    }
+    if (getQueryParam('error') === 'weak_password') {
+        document.getElementById('password-error').textContent = "Password must be at least 8 characters.";
+    }
+    if (getQueryParam('error') === 'invalid_username') {
+        document.getElementById('username-error').textContent = "Username must contain both letters and numbers, and no special characters.";
+    }
+}
+
+// **Client-side validation before submitting the form**
+document.addEventListener("DOMContentLoaded", function() {
+    showErrors(); // Show errors when the page loads
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+        let username = document.getElementById("username").value;
+        let usernamePattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/; // ✅ Must contain at least one letter and one number
+
+        let usernameError = document.getElementById("username-error");
+
+        // Username validation
+        if (!usernamePattern.test(username)) {
+            usernameError.textContent = "Username must contain both letters and numbers, and no special characters.";
+            event.preventDefault(); // Stop form submission
+        } else {
+            usernameError.textContent = ""; // Clear error if valid
+        }
+    });
+});
+
+    </script>
+</body>
+</html>
