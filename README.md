@@ -27,7 +27,7 @@ This project is a web application designed with HTML5, CSS3, PHP, and JavaScript
 ## Database Schema
 ### Tables:
 1. **Users**: Stores user data (`id`, `name`, `email`, `password`).
-2. **Tasks**: Stores task details (`id`, `title`, `description`, `due_date`, `user_id`).
+2. **Tasks**: Stores task details (`id`, `userid`, `task`, `status`).
 3. **Messages**: Stores user messages (`id`, `content`, `sender_id`, `receiver_id`, `timestamp`).
 
 ## Key Functionalities
@@ -39,7 +39,7 @@ This project is a web application designed with HTML5, CSS3, PHP, and JavaScript
 1. Clone the repository.
 2. Import the database schema into your MySQL server.
 3. Edit `db_connection.php` to include your database credentials.
-4. Host files on a local or online server (e.g., XAMPP or InfinityFree).
+4. Host files on a local or online server.
 
 ## Author Contributions
 - **Sana**: Worked on login and registration system, validated user input, and styled the user dashboard.
